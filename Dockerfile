@@ -1,7 +1,7 @@
-FROM nginx:alpine
+FROM alpine:3.4
 
 RUN set +x \
-apk add --no-cache curl \
+apk add --no-cache curl nginx \
 && addgroup -g 82 -S www-data \
 && adduser -u 82 -D -S -G www-data www-data \
 && ln -sf /dev/stdout /var/log/nginx/access.log \
