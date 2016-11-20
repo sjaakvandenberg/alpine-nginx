@@ -10,7 +10,8 @@ RUN set +x \
 && adduser -u 82 -D -S -G www-data www-data \
 && apk add --no-cache nginx \
 && chown -R www-data:www-data /usr/sbin/nginx \
-&& ls -hAlF /usr/sbin/
+&& ln -sf /dev/stdout /var/log/nginx/access.log \
+&& ln -sf /dev/stderr /var/log/nginx/error.log
 
 COPY nginx.conf     /etc/nginx/nginx.conf
 COPY conf.d/        /etc/nginx/conf.d
