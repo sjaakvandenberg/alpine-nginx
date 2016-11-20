@@ -2,12 +2,12 @@ FROM alpine:3.4
 
 # ln -sf /dev/stdout /var/log/nginx/access.log \
 # ln -sf /dev/stderr /var/log/nginx/error.log \
+# rm /etc/nginx/conf.d/default.conf \
 
 RUN set +x \
 apk add --no-cache curl nginx \
 && addgroup -g 82 -S www-data \
 && adduser -u 82 -D -S -G www-data www-data \
-&& rm /etc/nginx/conf.d/default.conf \
 && chown -R www-data:www-data /etc/nginx/conf.d/ /etc/nginx/nginx.conf /usr/sbin/nginx
 
 COPY nginx.conf     /etc/nginx/nginx.conf
