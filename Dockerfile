@@ -6,9 +6,10 @@ FROM alpine:3.4
 # chown -R www-data:www-data /etc/nginx/conf.d/ /etc/nginx/nginx.conf /usr/sbin/nginx
 
 RUN set +x \
-apk add curl nginx \
+apk add --no-cache curl nginx \
 && addgroup -g 82 -S www-data \
-&& adduser -u 82 -D -S -G www-data www-data
+&& adduser -u 82 -D -S -G www-data www-data \
+&& which nginx
 
 COPY nginx.conf     /etc/nginx/nginx.conf
 COPY conf.d/        /etc/nginx/conf.d
@@ -17,4 +18,4 @@ ADD app/ /app
 
 EXPOSE 80
 
-CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;"]
