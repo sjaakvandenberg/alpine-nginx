@@ -6,7 +6,7 @@ FROM alpine:3.4
 # chown -R www-data:www-data /etc/nginx/conf.d/ /etc/nginx/nginx.conf /usr/sbin/nginx
 
 RUN set +x \
-apk add --no-cache curl nginx \
+apk add curl nginx \
 && addgroup -g 82 -S www-data \
 && adduser -u 82 -D -S -G www-data www-data
 
