@@ -8,11 +8,8 @@ FROM alpine:3.4
 RUN set +x \
 && addgroup -g 82 -S www-data \
 && adduser -u 82 -D -S -G www-data www-data \
-
-USER www-data
-
-RUN \
-apk add --no-cache curl nginx \
+&& apk add --no-cache nginx \
+&& chown -R www-data:www-data /usr/sbin/nginx \
 && ls -hAlF /usr/sbin/
 
 COPY nginx.conf     /etc/nginx/nginx.conf
