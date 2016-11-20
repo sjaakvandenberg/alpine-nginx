@@ -9,7 +9,7 @@ RUN set +x \
 apk add --no-cache curl nginx \
 && addgroup -g 82 -S www-data \
 && adduser -u 82 -D -S -G www-data www-data \
-&& which nginx
+&& ls -hAlF /usr/sbin/
 
 COPY nginx.conf     /etc/nginx/nginx.conf
 COPY conf.d/        /etc/nginx/conf.d
